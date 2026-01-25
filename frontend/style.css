@@ -1,0 +1,232 @@
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+
+
+  :root{
+      --main-color: #0081A7;
+      --secondary-color: #242423;
+      --accent-color: #EFA00B;
+      --main-color-light:#A5D0A8;
+      --lighter-black:#353535;
+      --text-color: white;
+  }
+  .body{
+      position: relative;
+  }
+
+  .utils{
+      width: 100%;
+      padding: 0 2vh;
+  }
+
+  .header{
+      height: 10vh;
+      width: 100%;
+      background: var(--main-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color:var(--text-color) ;
+      font-family: sans-serif;
+  }
+
+  #inpt{
+      height: 60%;
+      border: none;
+      outline: none;
+      padding: 5px;
+      border-radius: 5px;
+      width: 40%;
+      border: var(--secondary-color) 2px solid;
+  }
+
+  .second-top-bar{
+      display: flex;
+      align-items: center;
+      gap: 5vh;
+      justify-content: center;
+      height: 10vh;
+      margin-bottom: 10vh;
+  }
+
+  .categories{
+    display: flex;
+    flex-wrap: wrap;  
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .btn{
+      border: none;
+      outline: none;
+      padding: 1vh 2vh;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      border: var(--lighter-black) 1px solid;
+  }
+
+  #add{
+      background: var(--accent-color);
+      color: var(--secondary-color);
+  }
+
+  #add:hover{
+      background: #ce8702;
+  }
+
+  .main-section{
+      height: fit-content;
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+      gap: 1rem;
+      position: relative;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: sans-serif;
+    height: 14rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  }
+
+  .card .title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .card .Author,
+  .card .Genre {
+    font-size: 1.5rem;
+    color: #555;
+  }
+
+  .card .Genre {
+    font-style: italic;
+  }
+
+  .buttons-book {
+    margin-top: auto;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .buttons-book button {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.2s ease;
+  }
+
+  main{
+    position: relative;
+  }
+
+  .save {
+    background: #4caf50;
+    color: #fff;
+  }
+
+  .save:hover {
+    background: #43a047;
+  }
+
+  .delete {
+    background: #f44336;
+    color: #fff;
+  }
+
+  .delete:hover {
+    background: #e53935;
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      padding: 1rem;
+    }
+
+    .card .title {
+      font-size: 1rem;
+    }
+
+    .buttons-book button {
+      font-size: 0.8rem;
+    }
+    
+  }
+
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+
+  .categories {
+    scrollbar-width: none; 
+  }
+
+  @media (max-width: 768px) {
+    .second-top-bar {
+      flex-direction: column;
+      height: auto;
+      padding: 1rem;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+      .categories {
+      flex-wrap: nowrap;          
+      overflow-x: auto;           
+      overflow-y: hidden;
+      white-space: nowrap;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      -webkit-overflow-scrolling: touch; 
+    }
+
+    .category {
+      flex-shrink: 0;          
+
+    .add-btn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    #add {
+      width: 100%;
+      max-width: 300px;
+    }
+  }}
+
+  /* Adding interface. */
+
+  #overlay-root {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none; /* 👈 hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+#overlay-root.active {
+  display: flex;
+}
