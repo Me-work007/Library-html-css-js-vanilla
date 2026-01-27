@@ -10,11 +10,11 @@ const searchBar = document.querySelector("#inpt")
 searchBar.addEventListener('input', SearchFilter)
 
 
-
 const renderer = (arr) => {
-  parent.innerHTML = arr
-    .map(
-      (book) => `
+  if (!isPopup) {
+    parent.innerHTML = arr
+      .map(
+        (book) => `
     <div class="card">
     <p class="title">${book.title}</p>
     <p class="Author">${book.author}</p>
@@ -25,9 +25,45 @@ const renderer = (arr) => {
     </div>
     </div>
     `
-    )
-    .join("");
+      )
+      .join("");
+  } else {
+    parent.innerHTML = ` 
+    <div class="input-parent">
+     <div id="popup">
+  <form class="popup-box">
+    <button type="button" class="close-btn">✕</button>
+
+    <h2>Add Book</h2>
+
+    <input type="text" placeholder="Book title" required />
+    <input type="text" placeholder="Author" required />
+    <input type="text" placeholder="Genre" required />
+
+    <button type="submit" class="submit-btn">Add Book</button>
+  </form>
+</div>
+
+    </div>`
+  }
 };
+
+// adding the pop-up functionality
+let isPopup = false
+
+// Creating the add  renderer
+
+const addBtn = document.querySelector("#add")
+const closeBtn = document.querySelector(".close-btn")
+const showInt = () => {
+  console.log("clicked mofo", isPopup)
+  isPopup = !isPopup
+  renderer(currentBooks)
+};
+
+addBtn.addEventListener("click", showInt)
+closeBtn.addEventListener("click", showInt)
+
 
 const deleteOne = (id) => {
   allBooks = allBooks.filter(book => book.id !== id);
@@ -81,22 +117,6 @@ function SearchFilter(e) {
   renderer(search_filtered_arr);
 }
 
-// Creating the add  renderer
 
-const addBtn  = document.querySelector("#add")
-const overlayRoot = document.querySelector("#overlay-root");
 
-const showInt = () => {
-  overlayRoot.innerHTML = `
-    <div class="add-int">
-      <button class="close">✕</button>
-      <h1>just checking</h1>
-    </div>
-  `;
-  overlayRoot.classList.add("active");
-};
 
-const hideInt = () => {
-  overlayRoot.classList.remove("active");
-  overlayRoot.innerHTML = "";
-};
